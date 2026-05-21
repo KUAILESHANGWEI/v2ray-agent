@@ -28,7 +28,7 @@ Xray-core/sing-box 一键脚本快速安装
 ### 安装脚本版
 
 ```
-wget -P /root -N --no-check-certificate "https://raw.githubusercontent.com/mack-a/v2ray-agent/master/install.sh" && chmod 700 /root/install.sh && /root/install.sh
+wget -P /root -N --no-check-certificate "https://raw.githubusercontent.com/KUAILESHANGWEI/v2ray-agent/main/install.sh" && chmod 700 /root/install.sh && /root/install.sh
 ```
 
 ### 使用
@@ -41,7 +41,7 @@ vasma
 
 ### 安装Docker版
 ```
-wget -P /root -N --no-check-certificate "https://raw.githubusercontent.com/mack-a/v2ray-agent/master/shell/docker_reality.sh" && chmod 700 /root/docker_reality.sh && /root/docker_reality.sh
+wget -P /root -N --no-check-certificate "https://raw.githubusercontent.com/KUAILESHANGWEI/v2ray-agent/main/shell/docker_reality.sh" && chmod 700 /root/docker_reality.sh && /root/docker_reality.sh
 ```
 
 ### 使用 
@@ -70,7 +70,7 @@ vasmad
 
 *   **Telegram:** [频道](https://t.me/v2rayAgentChannel) | [群组](https://t.me/technologyshare)
 *   **网站:** [官网](https://www.v2ray-agent.com/) | [备用](https://www.592083.xyz/)
-*   **反馈:** [提交 issue](https://github.com/mack-a/v2ray-agent/issues)
+*   **反馈:** [提交 issue](https://github.com/KUAILESHANGWEI/v2ray-agent/issues)
 *   **X:** [链接](https://x.com/v2rayagent)
 
 ## 捐赠

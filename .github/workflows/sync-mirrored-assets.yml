@@ -1,0 +1,20 @@
+name: Sync mirrored release assets
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */12 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sync upstream release assets
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TARGET_REPO: KUAILESHANGWEI/v2ray-agent
+        run: bash .github/scripts/sync-mirrored-assets.sh
