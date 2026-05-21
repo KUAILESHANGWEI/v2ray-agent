@@ -8,7 +8,7 @@
     "clash_api": {
       "external_controller": "127.0.0.1:9090",
       "external_ui": "metacubexd",
-      "external_ui_download_url": "https://gh-proxy.com/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
+      "external_ui_download_url": "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-MetaCubeX-metacubexd-gh-pages/gh-pages.zip",
       "external_ui_download_detour": "direct",
       "default_mode": "rule"
     },
@@ -114,8 +114,7 @@
     {
       "type": "urltest",
       "tag": "自动选择",
-      "outbounds": [
-      ],
+      "outbounds": [],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "3m",
       "tolerance": 50,
@@ -124,8 +123,7 @@
     {
       "type": "selector",
       "tag": "手动切换",
-      "outbounds": [
-      ]
+      "outbounds": []
     },
     {
       "type": "selector",
@@ -219,126 +217,126 @@
         "tag": "geosite-category-ads-all",
         "type": "remote",
         "format": "binary",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ads-all.srs",
+        "url": "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-MetaCubeX-meta-rules-dat-sing/geosite-category-ads-all.srs",
         "update_interval": "1d"
       },
       {
         "tag": "geosite-telegram",
         "type": "remote",
         "format": "binary",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/telegram.srs",
+        "url": "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-MetaCubeX-meta-rules-dat-sing/geosite-telegram.srs",
         "update_interval": "1d"
       },
       {
         "tag": "geoip-telegram",
         "type": "remote",
         "format": "binary",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/telegram.srs",
+        "url": "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-MetaCubeX-meta-rules-dat-sing/geoip-telegram.srs",
         "update_interval": "1d"
       },
       {
         "tag": "geosite-youtube",
         "type": "remote",
         "format": "binary",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/youtube.srs",
+        "url": "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-MetaCubeX-meta-rules-dat-sing/geosite-youtube.srs",
         "update_interval": "1d"
       },
       {
         "tag": "geosite-netflix",
         "type": "remote",
         "format": "binary",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/netflix.srs",
+        "url": "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-MetaCubeX-meta-rules-dat-sing/geosite-netflix.srs",
         "update_interval": "1d"
       },
       {
         "tag": "geoip-netflix",
         "type": "remote",
         "format": "binary",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/netflix.srs",
+        "url": "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-MetaCubeX-meta-rules-dat-sing/geoip-netflix.srs",
         "update_interval": "1d"
       },
       {
         "tag": "geosite-openai@ads",
         "type": "remote",
         "format": "binary",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/openai@ads.srs",
+        "url": "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-MetaCubeX-meta-rules-dat-sing/geosite-openai@ads.srs",
         "update_interval": "1d"
       },
       {
         "tag": "geosite-openai",
         "type": "remote",
         "format": "binary",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/openai.srs",
+        "url": "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-MetaCubeX-meta-rules-dat-sing/geosite-openai.srs",
         "update_interval": "1d"
       },
       {
         "tag": "geosite-apple",
         "type": "remote",
         "format": "binary",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/apple.srs",
+        "url": "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-MetaCubeX-meta-rules-dat-sing/geosite-apple.srs",
         "update_interval": "1d"
       },
       {
         "tag": "geosite-google",
         "type": "remote",
         "format": "binary",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/google.srs",
+        "url": "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-MetaCubeX-meta-rules-dat-sing/geosite-google.srs",
         "update_interval": "1d"
       },
       {
         "tag": "geoip-google",
         "type": "remote",
         "format": "binary",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/google.srs",
+        "url": "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-MetaCubeX-meta-rules-dat-sing/geoip-google.srs",
         "update_interval": "1d"
       },
       {
         "tag": "geosite-microsoft",
         "type": "remote",
         "format": "binary",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/microsoft.srs",
+        "url": "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-MetaCubeX-meta-rules-dat-sing/geosite-microsoft.srs",
         "update_interval": "1d"
       },
       {
         "tag": "geosite-geolocation-!cn",
         "type": "remote",
         "format": "binary",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/geolocation-!cn.srs",
+        "url": "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-MetaCubeX-meta-rules-dat-sing/geosite-geolocation-!cn.srs",
         "update_interval": "1d"
       },
       {
         "tag": "geosite-github",
         "type": "remote",
         "format": "binary",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/github.srs",
+        "url": "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-MetaCubeX-meta-rules-dat-sing/geosite-github.srs",
         "update_interval": "1d"
       },
       {
         "tag": "geosite-private",
         "type": "remote",
         "format": "binary",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/private.srs",
+        "url": "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-MetaCubeX-meta-rules-dat-sing/geosite-private.srs",
         "update_interval": "1d"
       },
       {
         "tag": "geosite-cn",
         "type": "remote",
         "format": "binary",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs",
+        "url": "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-MetaCubeX-meta-rules-dat-sing/geosite-cn.srs",
         "update_interval": "1d"
       },
       {
         "tag": "geoip-private",
         "type": "remote",
         "format": "binary",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/private.srs",
+        "url": "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-MetaCubeX-meta-rules-dat-sing/geoip-private.srs",
         "update_interval": "1d"
       },
       {
         "tag": "geoip-cn",
         "type": "remote",
         "format": "binary",
-        "url": "https://gh-proxy.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cn.srs",
+        "url": "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-MetaCubeX-meta-rules-dat-sing/geoip-cn.srs",
         "update_interval": "1d"
       }
     ],
@@ -458,4 +456,3 @@
     "auto_detect_interface": true
   }
 }
-
