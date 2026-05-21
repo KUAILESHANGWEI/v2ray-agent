@@ -185,7 +185,7 @@ init(){
     echoColor green "   9.下个版本会加入通配符证书生成[todo]"
     echoColor green "   10.可以生成多个不同域名的证书[包含子域名]，具体速率请查看[https://letsencrypt.org/zh-cn/docs/rate-limits/]"
     echoColor green "   11.兼容Centos、Ubuntu、Debian"
-    echoColor green "   12.Github[https://github.com/mack-a]"
+    echoColor green "   12.Github[https://github.com/KUAILESHANGWEI]"
     echoColor red "=============================="
     echoColor yellow "请输入[y]执行脚本，[任意]结束:"
     read isExecStatus
