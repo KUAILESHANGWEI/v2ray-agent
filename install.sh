@@ -2112,9 +2112,9 @@ nginxBlog() {
             #  randomNum=$((RANDOM % 6 + 1))
             randomNum=$(randomNum 1 9)
             if [[ "${release}" == "alpine" ]]; then
-                wget -q -P "${nginxStaticPath}" "https://raw.githubusercontent.com/mack-a/v2ray-agent/master/fodder/blog/unable/html${randomNum}.zip"
+                wget -q -P "${nginxStaticPath}" "https://raw.githubusercontent.com/KUAILESHANGWEI/v2ray-agent/main/fodder/blog/unable/html${randomNum}.zip"
             else
-                wget -q "${wgetShowProgressStatus}" -P "${nginxStaticPath}" "https://raw.githubusercontent.com/mack-a/v2ray-agent/master/fodder/blog/unable/html${randomNum}.zip"
+                wget -q "${wgetShowProgressStatus}" -P "${nginxStaticPath}" "https://raw.githubusercontent.com/KUAILESHANGWEI/v2ray-agent/main/fodder/blog/unable/html${randomNum}.zip"
             fi
 
             unzip -o "${nginxStaticPath}html${randomNum}.zip" -d "${nginxStaticPath}" >/dev/null
@@ -2127,9 +2127,9 @@ nginxBlog() {
         rm -rf "${nginxStaticPath}*"
 
         if [[ "${release}" == "alpine" ]]; then
-            wget -q -P "${nginxStaticPath}" "https://raw.githubusercontent.com/mack-a/v2ray-agent/master/fodder/blog/unable/html${randomNum}.zip"
+            wget -q -P "${nginxStaticPath}" "https://raw.githubusercontent.com/KUAILESHANGWEI/v2ray-agent/main/fodder/blog/unable/html${randomNum}.zip"
         else
-            wget -q "${wgetShowProgressStatus}" -P "${nginxStaticPath}" "https://raw.githubusercontent.com/mack-a/v2ray-agent/master/fodder/blog/unable/html${randomNum}.zip"
+            wget -q "${wgetShowProgressStatus}" -P "${nginxStaticPath}" "https://raw.githubusercontent.com/KUAILESHANGWEI/v2ray-agent/main/fodder/blog/unable/html${randomNum}.zip"
         fi
 
         unzip -o "${nginxStaticPath}html${randomNum}.zip" -d "${nginxStaticPath}" >/dev/null
@@ -2304,17 +2304,17 @@ installSingBox() {
     if [[ ! -f "/etc/v2ray-agent/sing-box/sing-box" ]]; then
 
         if [[ "${prereleaseStatus}" == "true" ]]; then
-            version=$(curl -s "https://api.github.com/repos/SagerNet/sing-box/releases?per_page=20" | jq -r ".[]|select (.prerelease==${prereleaseStatus})|.tag_name" | head -1)
+            version=$(curl -s "https://api.github.com/repos/KUAILESHANGWEI/v2ray-agent/releases?per_page=100" | jq -r ".[]|select(.tag_name|startswith(\"mirror-SagerNet-sing-box-\"))|select(.prerelease==${prereleaseStatus})|.tag_name" | sed "s#^mirror-SagerNet-sing-box-##" | head -1)
         else
-            version=$(curl -s https://api.github.com/repos/SagerNet/sing-box/releases/latest | jq -r .tag_name)
+            version=$(curl -s "https://api.github.com/repos/KUAILESHANGWEI/v2ray-agent/releases?per_page=100" | jq -r ".[]|select(.tag_name|startswith(\"mirror-SagerNet-sing-box-\"))|select(.prerelease==false)|.tag_name" | sed "s#^mirror-SagerNet-sing-box-##" | head -1)
         fi
 
         echoContent green " ---> 最新版本:${version}"
 
         if [[ "${release}" == "alpine" ]]; then
-            wget -c -q -P /etc/v2ray-agent/sing-box/ "https://github.com/SagerNet/sing-box/releases/download/${version}/sing-box-${version/v/}${singBoxCoreCPUVendor}.tar.gz"
+            wget -c -q -P /etc/v2ray-agent/sing-box/ "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-SagerNet-sing-box-${version}/sing-box-${version/v/}${singBoxCoreCPUVendor}.tar.gz"
         else
-            wget -c -q "${wgetShowProgressStatus}" -P /etc/v2ray-agent/sing-box/ "https://github.com/SagerNet/sing-box/releases/download/${version}/sing-box-${version/v/}${singBoxCoreCPUVendor}.tar.gz"
+            wget -c -q "${wgetShowProgressStatus}" -P /etc/v2ray-agent/sing-box/ "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-SagerNet-sing-box-${version}/sing-box-${version/v/}${singBoxCoreCPUVendor}.tar.gz"
         fi
 
         if [[ ! -f "/etc/v2ray-agent/sing-box/sing-box-${version/v/}${singBoxCoreCPUVendor}.tar.gz" ]]; then
@@ -2334,9 +2334,9 @@ installSingBox() {
         echoContent green " ---> 当前版本:v$(/etc/v2ray-agent/sing-box/sing-box version | grep "sing-box version" | awk '{print $3}')"
 
         if [[ "${prereleaseStatus}" == "true" ]]; then
-            version=$(curl -s "https://api.github.com/repos/SagerNet/sing-box/releases?per_page=20" | jq -r ".[]|select (.prerelease==${prereleaseStatus})|.tag_name" | head -1)
+            version=$(curl -s "https://api.github.com/repos/KUAILESHANGWEI/v2ray-agent/releases?per_page=100" | jq -r ".[]|select(.tag_name|startswith(\"mirror-SagerNet-sing-box-\"))|select(.prerelease==${prereleaseStatus})|.tag_name" | sed "s#^mirror-SagerNet-sing-box-##" | head -1)
         else
-            version=$(curl -s https://api.github.com/repos/SagerNet/sing-box/releases/latest | jq -r .tag_name)
+            version=$(curl -s "https://api.github.com/repos/KUAILESHANGWEI/v2ray-agent/releases?per_page=100" | jq -r ".[]|select(.tag_name|startswith(\"mirror-SagerNet-sing-box-\"))|select(.prerelease==false)|.tag_name" | sed "s#^mirror-SagerNet-sing-box-##" | head -1)
         fi
 
         echoContent green " ---> 最新版本:${version}"
@@ -2372,16 +2372,16 @@ installXray() {
 
     if [[ ! -f "/etc/v2ray-agent/xray/xray" ]]; then
         if [[ "${prereleaseStatus}" == "true" ]]; then
-            version=$(curl -s "https://api.github.com/repos/XTLS/Xray-core/releases?per_page=5" | jq -r ".[]|select (.prerelease==${prereleaseStatus})|.tag_name" | head -1)
+            version=$(curl -s "https://api.github.com/repos/KUAILESHANGWEI/v2ray-agent/releases?per_page=100" | jq -r ".[]|select(.tag_name|startswith(\"mirror-XTLS-Xray-core-\"))|select(.prerelease==${prereleaseStatus})|.tag_name" | sed "s#^mirror-XTLS-Xray-core-##" | head -1)
         else
-            version=$(curl -s https://api.github.com/repos/XTLS/Xray-core/releases/latest | jq -r .tag_name)
+            version=$(curl -s "https://api.github.com/repos/KUAILESHANGWEI/v2ray-agent/releases?per_page=100" | jq -r ".[]|select(.tag_name|startswith(\"mirror-XTLS-Xray-core-\"))|select(.prerelease==false)|.tag_name" | sed "s#^mirror-XTLS-Xray-core-##" | head -1)
         fi
 
         echoContent green " ---> Xray-core版本:${version}"
         if [[ "${release}" == "alpine" ]]; then
-            wget -c -q -P /etc/v2ray-agent/xray/ "https://github.com/XTLS/Xray-core/releases/download/${version}/${xrayCoreCPUVendor}.zip"
+            wget -c -q -P /etc/v2ray-agent/xray/ "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-XTLS-Xray-core-${version}/${xrayCoreCPUVendor}.zip"
         else
-            wget -c -q "${wgetShowProgressStatus}" -P /etc/v2ray-agent/xray/ "https://github.com/XTLS/Xray-core/releases/download/${version}/${xrayCoreCPUVendor}.zip"
+            wget -c -q "${wgetShowProgressStatus}" -P /etc/v2ray-agent/xray/ "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-XTLS-Xray-core-${version}/${xrayCoreCPUVendor}.zip"
         fi
 
         if [[ ! -f "/etc/v2ray-agent/xray/${xrayCoreCPUVendor}.zip" ]]; then
@@ -2393,17 +2393,17 @@ installXray() {
             unzip -o "/etc/v2ray-agent/xray/${xrayCoreCPUVendor}.zip" -d /etc/v2ray-agent/xray >/dev/null
             rm -rf "/etc/v2ray-agent/xray/${xrayCoreCPUVendor}.zip"
 
-            version=$(curl -s https://api.github.com/repos/Loyalsoldier/v2ray-rules-dat/releases?per_page=1 | jq -r '.[]|.tag_name')
+            version=$(curl -s "https://api.github.com/repos/KUAILESHANGWEI/v2ray-agent/releases?per_page=100" | jq -r '.[]|select(.tag_name|startswith("mirror-Loyalsoldier-v2ray-rules-dat-"))|.tag_name' | sed "s#^mirror-Loyalsoldier-v2ray-rules-dat-##" | head -1)
             echoContent skyBlue "------------------------Version-------------------------------"
             echo "version:${version}"
             rm /etc/v2ray-agent/xray/geo* >/dev/null 2>&1
 
             if [[ "${release}" == "alpine" ]]; then
-                wget -c -q -P /etc/v2ray-agent/xray/ "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/${version}/geosite.dat"
-                wget -c -q -P /etc/v2ray-agent/xray/ "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/${version}/geoip.dat"
+                wget -c -q -P /etc/v2ray-agent/xray/ "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-Loyalsoldier-v2ray-rules-dat-${version}/geosite.dat"
+                wget -c -q -P /etc/v2ray-agent/xray/ "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-Loyalsoldier-v2ray-rules-dat-${version}/geoip.dat"
             else
-                wget -c -q "${wgetShowProgressStatus}" -P /etc/v2ray-agent/xray/ "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/${version}/geosite.dat"
-                wget -c -q "${wgetShowProgressStatus}" -P /etc/v2ray-agent/xray/ "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/${version}/geoip.dat"
+                wget -c -q "${wgetShowProgressStatus}" -P /etc/v2ray-agent/xray/ "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-Loyalsoldier-v2ray-rules-dat-${version}/geosite.dat"
+                wget -c -q "${wgetShowProgressStatus}" -P /etc/v2ray-agent/xray/ "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-Loyalsoldier-v2ray-rules-dat-${version}/geoip.dat"
             fi
 
             chmod 655 /etc/v2ray-agent/xray/xray
@@ -2450,10 +2450,10 @@ xrayVersionManageMenu() {
         echoContent yellow "2.不保证回退后一定可以正常使用"
         echoContent yellow "3.如果回退的版本不支持当前的config，则会无法连接，谨慎操作"
         echoContent skyBlue "------------------------Version-------------------------------"
-        curl -s "https://api.github.com/repos/XTLS/Xray-core/releases?per_page=5" | jq -r ".[]|select (.prerelease==false)|.tag_name" | awk '{print ""NR""":"$0}'
+        curl -s "https://api.github.com/repos/KUAILESHANGWEI/v2ray-agent/releases?per_page=100" | jq -r '.[]|select(.tag_name|startswith("mirror-XTLS-Xray-core-"))|select(.prerelease==false)|.tag_name' | sed "s#^mirror-XTLS-Xray-core-##" | awk '{print ""NR""":"$0}'
         echoContent skyBlue "--------------------------------------------------------------"
         read -r -p "请输入要回退的版本:" selectXrayVersionType
-        version=$(curl -s "https://api.github.com/repos/XTLS/Xray-core/releases?per_page=5" | jq -r ".[]|select (.prerelease==false)|.tag_name" | awk '{print ""NR""":"$0}' | grep "${selectXrayVersionType}:" | awk -F "[:]" '{print $2}')
+        version=$(curl -s "https://api.github.com/repos/KUAILESHANGWEI/v2ray-agent/releases?per_page=100" | jq -r '.[]|select(.tag_name|startswith("mirror-XTLS-Xray-core-"))|select(.prerelease==false)|.tag_name' | sed "s#^mirror-XTLS-Xray-core-##" | awk '{print ""NR""":"$0}' | grep "${selectXrayVersionType}:" | awk -F "[:]" '{print $2}')
         if [[ -n "${version}" ]]; then
             updateXray "${version}"
         else
@@ -2477,19 +2477,19 @@ xrayVersionManageMenu() {
 
 # 更新 geosite
 updateGeoSite() {
-    echoContent yellow "\n来源 https://github.com/Loyalsoldier/v2ray-rules-dat"
+    echoContent yellow "\n来源 https://github.com/KUAILESHANGWEI/v2ray-agent/releases?q=mirror-Loyalsoldier-v2ray-rules-dat"
 
-    version=$(curl -s https://api.github.com/repos/Loyalsoldier/v2ray-rules-dat/releases?per_page=1 | jq -r '.[]|.tag_name')
+    version=$(curl -s "https://api.github.com/repos/KUAILESHANGWEI/v2ray-agent/releases?per_page=100" | jq -r '.[]|select(.tag_name|startswith("mirror-Loyalsoldier-v2ray-rules-dat-"))|.tag_name' | sed "s#^mirror-Loyalsoldier-v2ray-rules-dat-##" | head -1)
     echoContent skyBlue "------------------------Version-------------------------------"
     echo "version:${version}"
     rm ${configPath}../geo* >/dev/null
 
     if [[ "${release}" == "alpine" ]]; then
-        wget -c -q -P ${configPath}../ "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/${version}/geosite.dat"
-        wget -c -q -P ${configPath}../ "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/${version}/geoip.dat"
+        wget -c -q -P ${configPath}../ "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-Loyalsoldier-v2ray-rules-dat-${version}/geosite.dat"
+        wget -c -q -P ${configPath}../ "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-Loyalsoldier-v2ray-rules-dat-${version}/geoip.dat"
     else
-        wget -c -q "${wgetShowProgressStatus}" -P ${configPath}../ "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/${version}/geosite.dat"
-        wget -c -q "${wgetShowProgressStatus}" -P ${configPath}../ "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/download/${version}/geoip.dat"
+        wget -c -q "${wgetShowProgressStatus}" -P ${configPath}../ "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-Loyalsoldier-v2ray-rules-dat-${version}/geosite.dat"
+        wget -c -q "${wgetShowProgressStatus}" -P ${configPath}../ "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-Loyalsoldier-v2ray-rules-dat-${version}/geoip.dat"
     fi
 
     reloadCore
@@ -2505,15 +2505,15 @@ updateXray() {
         if [[ -n "$1" ]]; then
             version=$1
         else
-            version=$(curl -s "https://api.github.com/repos/XTLS/Xray-core/releases?per_page=5" | jq -r ".[]|select (.prerelease==${prereleaseStatus})|.tag_name" | head -1)
+            version=$(curl -s "https://api.github.com/repos/KUAILESHANGWEI/v2ray-agent/releases?per_page=100" | jq -r ".[]|select(.tag_name|startswith(\"mirror-XTLS-Xray-core-\"))|select(.prerelease==${prereleaseStatus})|.tag_name" | sed "s#^mirror-XTLS-Xray-core-##" | head -1)
         fi
 
         echoContent green " ---> Xray-core版本:${version}"
 
         if [[ "${release}" == "alpine" ]]; then
-            wget -c -q -P /etc/v2ray-agent/xray/ "https://github.com/XTLS/Xray-core/releases/download/${version}/${xrayCoreCPUVendor}.zip"
+            wget -c -q -P /etc/v2ray-agent/xray/ "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-XTLS-Xray-core-${version}/${xrayCoreCPUVendor}.zip"
         else
-            wget -c -q "${wgetShowProgressStatus}" -P /etc/v2ray-agent/xray/ "https://github.com/XTLS/Xray-core/releases/download/${version}/${xrayCoreCPUVendor}.zip"
+            wget -c -q "${wgetShowProgressStatus}" -P /etc/v2ray-agent/xray/ "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-XTLS-Xray-core-${version}/${xrayCoreCPUVendor}.zip"
         fi
 
         unzip -o "/etc/v2ray-agent/xray/${xrayCoreCPUVendor}.zip" -d /etc/v2ray-agent/xray >/dev/null
@@ -2525,9 +2525,9 @@ updateXray() {
         echoContent green " ---> 当前版本:v$(/etc/v2ray-agent/xray/xray --version | awk '{print $2}' | head -1)"
 
         if [[ "${prereleaseStatus}" == "true" ]]; then
-            remoteVersion=$(curl -s "https://api.github.com/repos/XTLS/Xray-core/releases?per_page=5" | jq -r ".[]|select (.prerelease==${prereleaseStatus})|.tag_name" | head -1)
+            remoteVersion=$(curl -s "https://api.github.com/repos/KUAILESHANGWEI/v2ray-agent/releases?per_page=100" | jq -r ".[]|select(.tag_name|startswith(\"mirror-XTLS-Xray-core-\"))|select(.prerelease==${prereleaseStatus})|.tag_name" | sed "s#^mirror-XTLS-Xray-core-##" | head -1)
         else
-            remoteVersion=$(curl -s https://api.github.com/repos/XTLS/Xray-core/releases/latest | jq -r .tag_name)
+            remoteVersion=$(curl -s "https://api.github.com/repos/KUAILESHANGWEI/v2ray-agent/releases?per_page=100" | jq -r ".[]|select(.tag_name|startswith(\"mirror-XTLS-Xray-core-\"))|select(.prerelease==false)|.tag_name" | sed "s#^mirror-XTLS-Xray-core-##" | head -1)
         fi
 
         echoContent green " ---> 最新版本:${remoteVersion}"
@@ -3309,9 +3309,9 @@ EOF
 downloadSingBoxGeositeDB() {
     if [[ ! -f "${singBoxConfigPath}geosite.db" ]]; then
         if [[ "${release}" == "alpine" ]]; then
-            wget -q -P "${singBoxConfigPath}" https://github.com/Johnshall/sing-geosite/releases/latest/download/geosite.db
+            wget -q -P "${singBoxConfigPath}" https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-Johnshall-sing-geosite-latest/geosite.db
         else
-            wget -q "${wgetShowProgressStatus}" -P "${singBoxConfigPath}" https://github.com/Johnshall/sing-geosite/releases/latest/download/geosite.db
+            wget -q "${wgetShowProgressStatus}" -P "${singBoxConfigPath}" https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-Johnshall-sing-geosite-latest/geosite.db
         fi
 
     fi
@@ -5650,9 +5650,9 @@ updateNginxBlog() {
         rm -rf "${nginxStaticPath}*"
 
         if [[ "${release}" == "alpine" ]]; then
-            wget -q -P "${nginxStaticPath}" "https://raw.githubusercontent.com/mack-a/v2ray-agent/master/fodder/blog/unable/html${selectInstallNginxBlogType}.zip"
+            wget -q -P "${nginxStaticPath}" "https://raw.githubusercontent.com/KUAILESHANGWEI/v2ray-agent/main/fodder/blog/unable/html${selectInstallNginxBlogType}.zip"
         else
-            wget -q "${wgetShowProgressStatus}" -P "${nginxStaticPath}" "https://raw.githubusercontent.com/mack-a/v2ray-agent/master/fodder/blog/unable/html${selectInstallNginxBlogType}.zip"
+            wget -q "${wgetShowProgressStatus}" -P "${nginxStaticPath}" "https://raw.githubusercontent.com/KUAILESHANGWEI/v2ray-agent/main/fodder/blog/unable/html${selectInstallNginxBlogType}.zip"
         fi
 
         unzip -o "${nginxStaticPath}html${selectInstallNginxBlogType}.zip" -d "${nginxStaticPath}" >/dev/null
@@ -6266,9 +6266,9 @@ updateV2RayAgent() {
     echoContent skyBlue "\n进度  $1/${totalProgress} : 更新v2ray-agent脚本"
     rm -rf /etc/v2ray-agent/install.sh
     if [[ "${release}" == "alpine" ]]; then
-        wget -c -q -P /etc/v2ray-agent/ -N --no-check-certificate "https://raw.githubusercontent.com/mack-a/v2ray-agent/master/install.sh"
+        wget -c -q -P /etc/v2ray-agent/ -N --no-check-certificate "https://raw.githubusercontent.com/KUAILESHANGWEI/v2ray-agent/main/install.sh"
     else
-        wget -c -q "${wgetShowProgressStatus}" -P /etc/v2ray-agent/ -N --no-check-certificate "https://raw.githubusercontent.com/mack-a/v2ray-agent/master/install.sh"
+        wget -c -q "${wgetShowProgressStatus}" -P /etc/v2ray-agent/ -N --no-check-certificate "https://raw.githubusercontent.com/KUAILESHANGWEI/v2ray-agent/main/install.sh"
     fi
 
     sudo chmod 700 /etc/v2ray-agent/install.sh
@@ -6279,7 +6279,7 @@ updateV2RayAgent() {
     echoContent yellow " ---> 请手动执行[vasma]打开脚本"
     echoContent green " ---> 当前版本：${version}\n"
     echoContent yellow "如更新不成功，请手动执行下面命令\n"
-    echoContent skyBlue "wget -P /root -N --no-check-certificate https://raw.githubusercontent.com/mack-a/v2ray-agent/master/install.sh && chmod 700 /root/install.sh && /root/install.sh"
+    echoContent skyBlue "wget -P /root -N --no-check-certificate https://raw.githubusercontent.com/KUAILESHANGWEI/v2ray-agent/main/install.sh && chmod 700 /root/install.sh && /root/install.sh"
     echo
     exit 0
 }
@@ -6303,13 +6303,13 @@ handleFirewall() {
 # 安装BBR
 bbrInstall() {
     echoContent red "\n=============================================================="
-    echoContent green "BBR、DD脚本用的[ylx2016]的成熟作品，地址[https://github.com/ylx2016/Linux-NetSpeed]，请熟知"
+    echoContent green "BBR、DD脚本用的[ylx2016]的成熟作品，地址[https://github.com/KUAILESHANGWEI/v2ray-agent/releases/tag/mirror-ylx2016-Linux-NetSpeed-master]，请熟知"
     echoContent yellow "1.安装脚本【推荐原版BBR+FQ】"
     echoContent yellow "2.回退主目录"
     echoContent red "=============================================================="
     read -r -p "请选择:" installBBRStatus
     if [[ "${installBBRStatus}" == "1" ]]; then
-        wget -O tcpx.sh "https://github.com/ylx2016/Linux-NetSpeed/raw/master/tcpx.sh" && chmod +x tcpx.sh && ./tcpx.sh
+        wget -O tcpx.sh "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-ylx2016-Linux-NetSpeed-master/tcpx.sh" && chmod +x tcpx.sh && ./tcpx.sh
     else
         menu
     fi
@@ -6683,7 +6683,7 @@ blacklist() {
     elif [[ "${blacklistStatus}" == "2" ]]; then
         echoContent red "=============================================================="
         echoContent yellow "# 注意事项\n"
-        echoContent yellow "1.规则支持预定义域名列表[https://github.com/v2fly/domain-list-community]"
+        echoContent yellow "1.规则支持预定义域名列表[https://github.com/KUAILESHANGWEI/v2ray-agent/releases/tag/mirror-v2fly-domain-list-community-latest]"
         echoContent yellow "2.规则支持自定义域名"
         echoContent yellow "3.录入示例:speedtest,facebook,cn,example.com"
         echoContent yellow "4.如果域名在预定义域名列表中存在则使用 geosite:xx，如果不存在则默认使用输入的域名"
@@ -6812,7 +6812,7 @@ downloadDLCPlainYAML() {
     if [[ -s "${dlcFilePath}" ]]; then
         return 0
     fi
-    local dlcDownloadURL="https://github.com/v2fly/domain-list-community/releases/latest/download/dlc.dat_plain.yml"
+    local dlcDownloadURL="https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-v2fly-domain-list-community-latest/dlc.dat_plain.yml"
     if [[ "${release}" == "alpine" ]]; then
         wget -c -O "${tmpFilePath}" "${dlcDownloadURL}" >/dev/null 2>&1
     else
@@ -7094,7 +7094,7 @@ addSingBoxGeoIPRouteRule() {
         "tag": "geoip_${geoipCode}_${routingName}",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-${geoipCode}.srs",
+        "url": "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-SagerNet-sing-geoip-rule-set/geoip-${geoipCode}.srs",
         "download_detour": "01_direct_outbound"
       }
     ]
@@ -7166,13 +7166,13 @@ installWarpReg() {
         echo
         echoContent yellow "# 注意事项"
         echoContent yellow "# 依赖第三方程序，请熟知其中风险"
-        echoContent yellow "# 项目地址：https://github.com/badafans/warp-reg \n"
+        echoContent yellow "# 项目地址：https://github.com/KUAILESHANGWEI/v2ray-agent/releases/tag/mirror-badafans-warp-reg-v1.0 \n"
 
         read -r -p "warp-reg未安装，是否安装 ？[y/n]:" installWarpRegStatus
 
         if [[ "${installWarpRegStatus}" == "y" ]]; then
 
-            curl -sLo /etc/v2ray-agent/warp/warp-reg "https://github.com/badafans/warp-reg/releases/download/v1.0/${warpRegCoreCPUVendor}"
+            curl -sLo /etc/v2ray-agent/warp/warp-reg "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-badafans-warp-reg-v1.0/${warpRegCoreCPUVendor}"
             chmod 655 /etc/v2ray-agent/warp/warp-reg
 
         else
@@ -7788,7 +7788,7 @@ initSingBoxRules() {
             matchedRuleName=$(getDLCGeositeName "${normalizedLine}" "/etc/v2ray-agent/sing-box")
 
             if [[ -n "${matchedRuleName}" ]]; then
-                ruleSet=$(echo "${ruleSet}" | jq -r ". += [{\"tag\":\"${matchedRuleName}_$2\",\"type\":\"remote\",\"format\":\"binary\",\"url\":\"https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-${matchedRuleName}.srs\",\"download_detour\":\"01_direct_outbound\"}]")
+                ruleSet=$(echo "${ruleSet}" | jq -r ". += [{\"tag\":\"${matchedRuleName}_$2\",\"type\":\"remote\",\"format\":\"binary\",\"url\":\"https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-SagerNet-sing-geosite-rule-set/geosite-${matchedRuleName}.srs\",\"download_detour\":\"01_direct_outbound\"}]")
             else
                 domainRules=$(echo "${domainRules}" | jq -r --arg reg "^([a-zA-Z0-9_-]+\\.)*${normalizedLine//./\\.}" '. += [$reg]')
             fi
@@ -8915,9 +8915,9 @@ find-process-mode: strict
 external-controller: 0.0.0.0:9090
 
 geox-url:
-  geoip: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
-  geosite: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
-  mmdb: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.metadb"
+  geoip: "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-MetaCubeX-meta-rules-dat-release/geoip.dat"
+  geosite: "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-MetaCubeX-meta-rules-dat-release/geosite.dat"
+  mmdb: "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-MetaCubeX-meta-rules-dat-release/geoip.metadb"
 geo-auto-update: true
 geo-update-interval: 24
 
@@ -9135,133 +9135,133 @@ rule-providers:
     type: http
     behavior: classical
     interval: 86400
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan.yaml
+    url: https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-blackmatrix7-ios-rule-script-clash/Lan.yaml
     path: ./Rules/lan.yaml
   reject:
     type: http
     behavior: domain
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt
+    url: https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-Loyalsoldier-clash-rules-release/reject.txt
     path: ./ruleset/reject.yaml
     interval: 86400
   proxy:
     type: http
     behavior: domain
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt
+    url: https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-Loyalsoldier-clash-rules-release/proxy.txt
     path: ./ruleset/proxy.yaml
     interval: 86400
   direct:
     type: http
     behavior: domain
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt
+    url: https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-Loyalsoldier-clash-rules-release/direct.txt
     path: ./ruleset/direct.yaml
     interval: 86400
   private:
     type: http
     behavior: domain
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/private.txt
+    url: https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-Loyalsoldier-clash-rules-release/private.txt
     path: ./ruleset/private.yaml
     interval: 86400
   gfw:
     type: http
     behavior: domain
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt
+    url: https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-Loyalsoldier-clash-rules-release/gfw.txt
     path: ./ruleset/gfw.yaml
     interval: 86400
   greatfire:
     type: http
     behavior: domain
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/greatfire.txt
+    url: https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-Loyalsoldier-clash-rules-release/greatfire.txt
     path: ./ruleset/greatfire.yaml
     interval: 86400
   tld-not-cn:
     type: http
     behavior: domain
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/tld-not-cn.txt
+    url: https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-Loyalsoldier-clash-rules-release/tld-not-cn.txt
     path: ./ruleset/tld-not-cn.yaml
     interval: 86400
   telegramcidr:
     type: http
     behavior: ipcidr
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/telegramcidr.txt
+    url: https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-Loyalsoldier-clash-rules-release/telegramcidr.txt
     path: ./ruleset/telegramcidr.yaml
     interval: 86400
   applications:
     type: http
     behavior: classical
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/applications.txt
+    url: https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-Loyalsoldier-clash-rules-release/applications.txt
     path: ./ruleset/applications.yaml
     interval: 86400
   Disney:
     type: http
     behavior: classical
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Disney/Disney.yaml
+    url: https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-blackmatrix7-ios-rule-script-clash/Disney.yaml
     path: ./ruleset/disney.yaml
     interval: 86400
   Netflix:
     type: http
     behavior: classical
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Netflix/Netflix.yaml
+    url: https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-blackmatrix7-ios-rule-script-clash/Netflix.yaml
     path: ./ruleset/netflix.yaml
     interval: 86400
   YouTube:
     type: http
     behavior: classical
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.yaml
+    url: https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-blackmatrix7-ios-rule-script-clash/YouTube.yaml
     path: ./ruleset/youtube.yaml
     interval: 86400
   HBO:
     type: http
     behavior: classical
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/HBO/HBO.yaml
+    url: https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-blackmatrix7-ios-rule-script-clash/HBO.yaml
     path: ./ruleset/hbo.yaml
     interval: 86400
   OpenAI:
     type: http
     behavior: classical
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.yaml
+    url: https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-blackmatrix7-ios-rule-script-clash/OpenAI.yaml
     path: ./ruleset/openai.yaml
     interval: 86400
   ClaudeAI:
     type: http
     behavior: classical
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Claude/Claude.yaml
+    url: https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-blackmatrix7-ios-rule-script-clash/Claude.yaml
     path: ./ruleset/claudeai.yaml
     interval: 86400
   Bing:
     type: http
     behavior: classical
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Bing/Bing.yaml
+    url: https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-blackmatrix7-ios-rule-script-clash/Bing.yaml
     path: ./ruleset/bing.yaml
     interval: 86400
   Google:
     type: http
     behavior: classical
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google.yaml
+    url: https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-blackmatrix7-ios-rule-script-clash/Google.yaml
     path: ./ruleset/google.yaml
     interval: 86400
   GitHub:
     type: http
     behavior: classical
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.yaml
+    url: https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-blackmatrix7-ios-rule-script-clash/GitHub.yaml
     path: ./ruleset/github.yaml
     interval: 86400
   Spotify:
     type: http
     behavior: classical
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Spotify/Spotify.yaml
+    url: https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-blackmatrix7-ios-rule-script-clash/Spotify.yaml
     path: ./ruleset/spotify.yaml
     interval: 86400
   ChinaMaxDomain:
     type: http
     behavior: domain
     interval: 86400
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_Domain.yaml
+    url: https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-blackmatrix7-ios-rule-script-clash/ChinaMax_Domain.yaml
     path: ./Rules/ChinaMaxDomain.yaml
   ChinaMaxIPNoIPv6:
     type: http
     behavior: ipcidr
     interval: 86400
-    url: https://gh-proxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_IP_No_IPv6.yaml
+    url: https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-blackmatrix7-ios-rule-script-clash/ChinaMax_IP_No_IPv6.yaml
     path: ./Rules/ChinaMaxIPNoIPv6.yaml
 rules:
   - RULE-SET,YouTube,YouTube,no-resolve
@@ -9407,9 +9407,9 @@ subscribe() {
 
                         echoContent skyBlue " ---> 下载 sing-box 通用配置文件"
                         if [[ "${release}" == "alpine" ]]; then
-                            wget -O "/etc/v2ray-agent/subscribe/sing-box/${emailMd5}" -q "https://raw.githubusercontent.com/mack-a/v2ray-agent/master/documents/sing-box.json"
+                            wget -O "/etc/v2ray-agent/subscribe/sing-box/${emailMd5}" -q "https://raw.githubusercontent.com/KUAILESHANGWEI/v2ray-agent/main/documents/sing-box.json"
                         else
-                            wget -O "/etc/v2ray-agent/subscribe/sing-box/${emailMd5}" -q "${wgetShowProgressStatus}" "https://raw.githubusercontent.com/mack-a/v2ray-agent/master/documents/sing-box.json"
+                            wget -O "/etc/v2ray-agent/subscribe/sing-box/${emailMd5}" -q "${wgetShowProgressStatus}" "https://raw.githubusercontent.com/KUAILESHANGWEI/v2ray-agent/main/documents/sing-box.json"
                         fi
 
                         jq ".outbounds=$(jq ".outbounds|map(if has(\"outbounds\") then .outbounds += $(jq ".|map(.tag)" "/etc/v2ray-agent/subscribe_local/sing-box/${email}") else . end)" "/etc/v2ray-agent/subscribe/sing-box/${emailMd5}")" "/etc/v2ray-agent/subscribe/sing-box/${emailMd5}" >"/etc/v2ray-agent/subscribe/sing-box/${emailMd5}_tmp" && mv "/etc/v2ray-agent/subscribe/sing-box/${emailMd5}_tmp" "/etc/v2ray-agent/subscribe/sing-box/${emailMd5}"
@@ -9808,8 +9808,8 @@ manageReality() {
 # 安装reality scanner
 installRealityScanner() {
     if [[ ! -f "/etc/v2ray-agent/xray/reality_scan/RealiTLScanner-linux-64" ]]; then
-        version=$(curl -s https://api.github.com/repos/XTLS/RealiTLScanner/releases?per_page=1 | jq -r '.[]|.tag_name')
-        wget -c -q -P /etc/v2ray-agent/xray/reality_scan/ "https://github.com/XTLS/RealiTLScanner/releases/download/${version}/RealiTLScanner-linux-64"
+        version=$(curl -s "https://api.github.com/repos/KUAILESHANGWEI/v2ray-agent/releases?per_page=100" | jq -r '.[]|select(.tag_name|startswith("mirror-XTLS-RealiTLScanner-"))|.tag_name' | sed "s#^mirror-XTLS-RealiTLScanner-##" | head -1)
+        wget -c -q -P /etc/v2ray-agent/xray/reality_scan/ "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-XTLS-RealiTLScanner-${version}/RealiTLScanner-linux-64"
         chmod 655 /etc/v2ray-agent/xray/reality_scan/RealiTLScanner-linux-64
     fi
 }
@@ -9979,7 +9979,7 @@ menu() {
     echoContent red "\n=============================================================="
     echoContent green "作者：mack-a"
     echoContent green "当前版本：v3.5.19"
-    echoContent green "Github：https://github.com/mack-a/v2ray-agent"
+    echoContent green "Github：https://github.com/KUAILESHANGWEI/v2ray-agent"
     echoContent green "描述：八合一共存脚本\c"
     showInstallStatus
     checkWgetShowProgress
