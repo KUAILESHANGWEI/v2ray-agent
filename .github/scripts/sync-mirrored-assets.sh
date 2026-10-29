@@ -33,8 +33,8 @@ ensure_release() {
 asset_exists() {
   local release_id=$1
   local name=$2
-  api_get "${API_ROOT}/repos/${TARGET_REPO}/releases/${release_id}/assets?per_page=100" |
-    jq -e --arg name "${name}" '.[]|select(.name==$name)' >/dev/null
+  gh api --paginate --slurp "repos/${TARGET_REPO}/releases/${release_id}/assets?per_page=100" |
+    jq -e --arg name "${name}" 'any(.[][]; .name == $name)' >/dev/null
 }
 
 upload_asset() {
