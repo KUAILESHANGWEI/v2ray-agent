@@ -301,7 +301,7 @@
         "tag": "geosite-geolocation-!cn",
         "type": "remote",
         "format": "binary",
-        "url": "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-MetaCubeX-meta-rules-dat-sing/geosite-geolocation-!cn.srs",
+        "url": "https://github.com/KUAILESHANGWEI/v2ray-agent/releases/download/mirror-MetaCubeX-meta-rules-dat-sing/geosite-geolocation-.cn.srs",
         "update_interval": "1d"
       },
       {

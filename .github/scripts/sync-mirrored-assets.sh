@@ -184,7 +184,7 @@ sync_single_url_release "mirror-MetaCubeX-meta-rules-dat-sing" "Mirror MetaCubeX
   "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/google.srs" "geosite-google.srs" \
   "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/google.srs" "geoip-google.srs" \
   "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/microsoft.srs" "geosite-microsoft.srs" \
-  "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/geolocation-!cn.srs" "geosite-geolocation-!cn.srs" \
+  "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/geolocation-!cn.srs" "geosite-geolocation-.cn.srs" \
   "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/github.srs" "geosite-github.srs" \
   "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/private.srs" "geosite-private.srs" \
   "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs" "geosite-cn.srs" \
